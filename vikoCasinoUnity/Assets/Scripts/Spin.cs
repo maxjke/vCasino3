@@ -12,43 +12,32 @@ public class Spin : MonoBehaviour
     private bool isSpinning; // Флаг для проверки, вращается ли барабан
     private bool firstSpin = true;
     public SlotMachineController controller;
-    
 
-    //void Start()
-    //{
-    //    // Запускаем вращение при старте
-    //    StartSpinning();
-    //}
+
+    void Start()
+    {
+        controller = FindAnyObjectByType<SlotMachineController>();
+    }
 
     public void StartSpinning()
     {
-        if (!isSpinning && firstSpin)
+        if (!isSpinning)
         {
-
-            StartCoroutine(SpinReel());
-            firstSpin = false;
+            if (firstSpin)
+            {
+                StartCoroutine(SpinReel());
+                firstSpin = false;
+            }
+            else
+            {
+                controller.ResetReels();
+                StartCoroutine(SpinReel());
+            }
+            //controller.CheckWin(0, 0);
+            //controller.CheckWin(0, 1);
+            //controller.CheckWin(0, 2);
         }
-        else if (!firstSpin)
-        {
-
-            // Вызываем сброс и рандомизацию барабанов
-            controller.ResetReels();
-            StartCoroutine(SpinReel());
-            // Также останавливаем все текущие вращения
-        }
-        else
-        { 
-            StopAllCoroutines();
-           
-            // Возможно, потребуется дополнительная логика для сброса состояния вращения
-            isSpinning = false;
-            
-        }
-        controller.CheckWin(0, 0);
-        controller.CheckWin(0, 1);
-        controller.CheckWin(0, 2);
     }
-
     private IEnumerator SpinReel()
     {
         isSpinning = true;
@@ -77,6 +66,7 @@ public class Spin : MonoBehaviour
 
         // После замедления, остановить барабан
         isSpinning = false;
+        controller.ReelStopped();
         
 
     }

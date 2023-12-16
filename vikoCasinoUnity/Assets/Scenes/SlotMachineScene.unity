@@ -20933,6 +20933,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2050725630}
   - component: {fileID: 2050725631}
+  - component: {fileID: 2050725632}
   m_Layer: 0
   m_Name: SlotMachine
   m_TagString: Untagged
@@ -20983,6 +20984,18 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 218e710dfdc13d14c8f27805682c1df9, type: 3}
   - {fileID: 21300000, guid: f03becc3df6a9a24ab418bb56b45ae29, type: 3}
   - {fileID: 21300000, guid: 3d992524bb8f0494a9a5bdbf053fd91e, type: 3}
+--- !u!114 &2050725632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050725629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa6aac048047f1249acc34c0b85ce61c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2058579172
 GameObject:
   m_ObjectHideFlags: 0

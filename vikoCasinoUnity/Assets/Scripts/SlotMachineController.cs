@@ -10,6 +10,7 @@ public class SlotMachineController : MonoBehaviour
     public Sprite[] symbols; // Массив всех возможных спрайтов символов
     private Vector3[] initialPositions; // Массив для хранения начальных позиций барабанов
     // Вызывается для начала вращения и рандомизации барабанов
+    private int stoppedReels;
     public void SpinReels()
     {
         foreach (GameObject reel in reels)
@@ -34,6 +35,26 @@ public class SlotMachineController : MonoBehaviour
         {
             // Сохраняем начальную позицию каждого барабана
             initialPositions[i] = reels[i].transform.position;
+        }
+    }
+
+    public void StartSpin()
+    {
+        foreach(GameObject reel in reels)
+        {
+            reel.GetComponent<Spin>().StartSpinning();
+        }
+    }
+
+    public void ReelStopped()
+    {
+        stoppedReels++;
+        if(stoppedReels == reels.Length)
+        {
+            CheckWin(0,1);
+            CheckWin(0, 2);
+            CheckWin(0, 3);
+            stoppedReels = 0;
         }
     }
 
