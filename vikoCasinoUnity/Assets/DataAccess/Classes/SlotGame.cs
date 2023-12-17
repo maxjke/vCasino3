@@ -10,5 +10,9 @@ namespace DataAccess.Classes
     public class SlotGame : Game
     {
         public GameObject[] reels;
+
+        public SlotGame(string whatWeWin, float numberOfTurns, bool canWeTurn, float speed) : base(whatWeWin, numberOfTurns, canWeTurn, speed)
+        {
+        }
     }
 }

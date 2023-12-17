@@ -1,3 +1,6 @@
+using Assets.DataAccess.Repositories;
+using Assets.Scripts.Roullete;
+using DataAccess.Classes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,23 +10,20 @@ using UnityEngine.UI;
 public class RoulleteWheel : MonoBehaviour
 {
     // Start is called before the first frame update
-    private int numberOfTurns;
-    private int whatWeWin;
-
-    private float speed;
-    private bool canWeTurn;
+    private RoulleteGame properties = new RoulleteGame();
+    private RoulleteRepository RoulleteRepository = new RoulleteRepository();
 
     public Text winningText;
 
     void Start()
     {
-        canWeTurn = true;
+        properties.setCanWeTurn(true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && canWeTurn)
+        if (Input.GetKeyDown(KeyCode.Space) && properties.getCanWeTurn())
         {
             StartCoroutine(TurnTheWheel());
         }
@@ -31,65 +31,56 @@ public class RoulleteWheel : MonoBehaviour
 
     private IEnumerator TurnTheWheel()
     {
-        canWeTurn = false;
+        properties.setCanWeTurn(false);
 
-        numberOfTurns = new System.Random().Next(10, 20);
+        properties.setNumberOfTurns(RoulleteRepository.GetNumberOfTurns());
 
-        speed = 0.01f;
+        properties.setSpeed(0.01f);
 
-        for (int i = 0; i < numberOfTurns; i++)
+        for (int i = 0; i < properties.getNumberOfTurns(); i++)
         {
             transform.Rotate(0, 0, 5f);
 
-            if (i > Mathf.RoundToInt(numberOfTurns * 0.1f))
+            if (i > Mathf.RoundToInt(properties.getNumberOfTurns() * 0.2f))
             {
-                speed = 0.01f;
+                properties.setSpeed(0.02f);
             }
-            if (i > Mathf.RoundToInt(numberOfTurns * 0.2f))
+            if (i > Mathf.RoundToInt(properties.getNumberOfTurns() * 0.3f))
             {
-                speed = 0.02f;
+                properties.setSpeed(0.03f);
             }
-            if (i > Mathf.RoundToInt(numberOfTurns * 0.3f))
+            if (i > Mathf.RoundToInt(properties.getNumberOfTurns() * 0.4f))
             {
-                speed = 0.03f;
+                properties.setSpeed(0.04f);
             }
-            if (i > Mathf.RoundToInt(numberOfTurns * 0.4f))
+            if (i > Mathf.RoundToInt(properties.getNumberOfTurns() * 0.5f))
             {
-                speed = 0.04f;
+                properties.setSpeed(0.05f);
             }
-
-            if (i > Mathf.RoundToInt(numberOfTurns * 0.5f))
+            if (i > Mathf.RoundToInt(properties.getNumberOfTurns() * 0.6f))
             {
-                speed = 0.05f;
+                properties.setSpeed(0.06f);
             }
-            if (i > Mathf.RoundToInt(numberOfTurns * 0.6f))
+            if (i > Mathf.RoundToInt(properties.getNumberOfTurns() * 0.7f))
             {
-                speed = 0.06f;
+                properties.setSpeed(0.07f);
             }
-
-            if (i > Mathf.RoundToInt(numberOfTurns * 0.7f))
+            if (i > Mathf.RoundToInt(properties.getNumberOfTurns() * 0.8f))
             {
-                speed = 0.07f;
+                properties.setSpeed(0.08f);
             }
-            if (i > Mathf.RoundToInt(numberOfTurns * 0.8f))
+            if (i > Mathf.RoundToInt(properties.getNumberOfTurns() * 0.9f))
             {
-                speed = 0.08f;
-            }
-            if (i > Mathf.RoundToInt(numberOfTurns * 0.9f))
-            {
-                speed = 0.09f;
+                properties.setSpeed(0.09f);
             }
 
-
-            yield return new WaitForSeconds(speed);
+            yield return new WaitForSeconds(properties.getSpeed());
         }
 
         if (Mathf.RoundToInt(transform.eulerAngles.z) % 10 != 0)
         {
             transform.Rotate(0, 0, 5f);
         }
-
-        whatWeWin = Mathf.RoundToInt(transform.eulerAngles.z);
 
         int divisionIndex = (int)(transform.eulerAngles.z / 9.72);
 
@@ -200,17 +191,15 @@ public class RoulleteWheel : MonoBehaviour
             case 34:
                 winningText.text = "35 red";
                 break;
-            case 35:
-                winningText.text = "3 black";
-                break;
             case 36:
-                winningText.text = "26 red";
+                winningText.text = "3 black";
                 break;
             default:
-                winningText.text = "3 black";
                 break;
         }
 
-        canWeTurn = true;
+        properties.setCanWeTurn(true);
     }
+
+
 }

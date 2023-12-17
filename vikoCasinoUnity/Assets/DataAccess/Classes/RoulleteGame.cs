@@ -8,6 +8,9 @@ namespace DataAccess.Classes
 {
     public class RoulleteGame : Game
     {
+        public RoulleteGame():base("", new Random().Next(150, 300), true, 0.01f) 
+        {
+        }
 
     }
 }
