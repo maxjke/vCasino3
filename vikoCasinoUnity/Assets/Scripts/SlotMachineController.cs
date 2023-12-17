@@ -11,16 +11,8 @@ public class SlotMachineController : MonoBehaviour
     private Vector3[] initialPositions; // ћассив дл€ хранени€ начальных позиций барабанов
     // ¬ызываетс€ дл€ начала вращени€ и рандомизации барабанов
     private int stoppedReels;
-    public void SpinReels()
-    {
-        foreach (GameObject reel in reels)
-        {
-            RandomizeReel(reel);
-        }
-        
-        // «десь можно добавить логику дл€ начала вращени€ барабанов
-    }
 
+   
 
 
     public void Start()
@@ -51,10 +43,16 @@ public class SlotMachineController : MonoBehaviour
         stoppedReels++;
         if(stoppedReels == reels.Length)
         {
-            CheckWin(0,1);
+            CheckWin(0,0);
+            CheckWin(0, 1);
             CheckWin(0, 2);
-            CheckWin(0, 3);
+            Spin.isAnyReelSpinning = false;
             stoppedReels = 0;
+           
+        }
+        else
+        {
+            Spin.isAnyReelSpinning = true;
         }
     }
 
