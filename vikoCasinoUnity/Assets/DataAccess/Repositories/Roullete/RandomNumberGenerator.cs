@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Assets.DataAccess.Repositories
 {
-    public class RoulleteRepository : IRoulleteRepository
+    public class RandomNumberGenerator : IRandomNumberGenerator
     {
-        public int GetNumberOfTurns()
+        public int GetRandomNumber(int min, int max)
         {
-            return new Random().Next(150, 300);
+            return new Random().Next(min, max);
         }
     }
 }

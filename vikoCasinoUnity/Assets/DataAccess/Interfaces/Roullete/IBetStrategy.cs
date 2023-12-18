@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.DataAccess.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Assets.DataAccess.Interfaces
 {
-    internal interface IRoulleteRepository
+    public interface IBetStrategy
     {
-        int GetNumberOfTurns();
+        RoulleteBet DetermineWinningBet(int x);
     }
 }
