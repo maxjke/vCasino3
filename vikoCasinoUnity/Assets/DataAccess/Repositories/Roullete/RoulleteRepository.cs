@@ -21,7 +21,7 @@ namespace Assets.DataAccess.Repositories
 
         public int GetRandomNumberOfTurns()
         {
-            return randomNumberGenerator.GetRandomNumber(150,300);
+            return randomNumberGenerator.GetRandomNumber(75,150);
         }
 
         public RoulleteBet GetWinBet(int x)

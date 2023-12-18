@@ -14,5 +14,14 @@ namespace DataAccess.Classes
         }
 
         private double Amount {  get; set; }
+
+        public void setAmount(double x)
+        {
+            this.Amount = x;
+        }
+        public double getAmount() 
+        {
+            return this.Amount;
+        }
     }
 }

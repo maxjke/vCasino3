@@ -18,5 +18,14 @@ namespace DataAccess.Classes
         private int Amount { get; }
         private int User_Id { get; }
 
+        public int getAmount()
+        {
+            return this.Amount;
+        }
+
+        public int getUserId() 
+        {
+            return this.User_Id;
+        }
     }
 }

@@ -43,9 +43,11 @@ public class RoulleteWheel : MonoBehaviour
 
         properties.setSpeed(0.01f);
 
+        float anglePerTurn = 360f / 37;
+
         for (int i = 0; i < properties.getNumberOfTurns(); i++)
         {
-            transform.Rotate(0, 0, 5f);
+            transform.Rotate(0, 0, anglePerTurn);
 
             if (i > Mathf.RoundToInt(properties.getNumberOfTurns() * 0.2f))
             {
@@ -57,44 +59,46 @@ public class RoulleteWheel : MonoBehaviour
             }
             if (i > Mathf.RoundToInt(properties.getNumberOfTurns() * 0.4f))
             {
-                properties.setSpeed(0.04f);
+                properties.setSpeed(0.05f);
             }
             if (i > Mathf.RoundToInt(properties.getNumberOfTurns() * 0.5f))
             {
-                properties.setSpeed(0.05f);
+                properties.setSpeed(0.07f);
             }
             if (i > Mathf.RoundToInt(properties.getNumberOfTurns() * 0.6f))
             {
-                properties.setSpeed(0.06f);
+                properties.setSpeed(0.09f);
             }
             if (i > Mathf.RoundToInt(properties.getNumberOfTurns() * 0.7f))
             {
-                properties.setSpeed(0.07f);
+                properties.setSpeed(0.11f);
             }
             if (i > Mathf.RoundToInt(properties.getNumberOfTurns() * 0.8f))
             {
-                properties.setSpeed(0.08f);
+                properties.setSpeed(0.13f);
             }
             if (i > Mathf.RoundToInt(properties.getNumberOfTurns() * 0.9f))
             {
-                properties.setSpeed(0.09f);
+                properties.setSpeed(0.15f);
             }
+
 
             yield return new WaitForSeconds(properties.getSpeed());
         }
 
         TurnIfUneven();
 
-        winningText.text = controller.GetWinBet((int)(transform.eulerAngles.z / 9.72)).ToString();
+        winningText.text = controller.GetWinBet((int)(transform.eulerAngles.z / anglePerTurn)).ToString();
 
         properties.setCanWeTurn(true);
     }
 
     public void TurnIfUneven()
     {
-        if (Mathf.RoundToInt(transform.eulerAngles.z) % 10 != 0)
+        float anglePerTurn = 360f / 37;
+        while (transform.eulerAngles.z % anglePerTurn > anglePerTurn / 2)
         {
-            transform.Rotate(0, 0, 5f);
+            transform.Rotate(0, 0, anglePerTurn / 2);
         }
     }
 
