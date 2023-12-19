@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlotMachine : MonoBehaviour
+public class SlotMachine : MonoBehaviour, ISlotMachine
 {
     private SlotMachineController machineController;
 

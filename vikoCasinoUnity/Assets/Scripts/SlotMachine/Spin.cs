@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spin : MonoBehaviour
 {
-
+    //15-8, 13.334-9, 10.915-11, 9.229-13, 8-15
     public float initialSpeed = 5.0f; // Ќачальна€ скорость вращени€
     public float spinTime = 2.0f; // ¬рем€, в течение которого барабан будет замедл€тьс€ до остановки
     private bool isSpinning; // ‘лаг дл€ проверки, вращаетс€ ли барабан

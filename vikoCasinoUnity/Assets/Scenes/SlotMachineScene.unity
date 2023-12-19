@@ -2535,10 +2535,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 272874333}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ce9b6f8409b5ee41b45e05c45df6eef, type: 3}
+  m_Script: {fileID: 11500000, guid: 343afd649d0d4ec4a987d3f11a30e263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSpeed: 13.34
+  initialSpeed: 13.334
   spinTime: 9
   controller: {fileID: 2050725631}
 --- !u!212 &272874336
@@ -4801,7 +4801,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 472015572}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ce9b6f8409b5ee41b45e05c45df6eef, type: 3}
+  m_Script: {fileID: 11500000, guid: 343afd649d0d4ec4a987d3f11a30e263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   initialSpeed: 8
@@ -6711,9 +6711,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ce9b6f8409b5ee41b45e05c45df6eef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSpeed: 8
-  spinTime: 15
-  controller: {fileID: 0}
 --- !u!212 &640844162
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6775,7 +6772,7 @@ Transform:
   m_GameObject: {fileID: 640844160}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -30.7, y: -5.38, z: -0.45455813}
+  m_LocalPosition: {x: -35.25, y: -17.42, z: -0.45455813}
   m_LocalScale: {x: 1.98839, y: 65.75625, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8561,7 +8558,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 814037818}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ce9b6f8409b5ee41b45e05c45df6eef, type: 3}
+  m_Script: {fileID: 11500000, guid: 343afd649d0d4ec4a987d3f11a30e263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   initialSpeed: 15
@@ -11005,10 +11002,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1005166543}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ce9b6f8409b5ee41b45e05c45df6eef, type: 3}
+  m_Script: {fileID: 11500000, guid: 343afd649d0d4ec4a987d3f11a30e263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSpeed: 9.238
+  initialSpeed: 9.229
   spinTime: 13
   controller: {fileID: 2050725631}
 --- !u!212 &1005166546
@@ -12003,9 +12000,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ce9b6f8409b5ee41b45e05c45df6eef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSpeed: 5
-  spinTime: 2
-  controller: {fileID: 0}
 --- !u!1 &1117736627
 GameObject:
   m_ObjectHideFlags: 0
@@ -13693,10 +13687,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1314047778}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ce9b6f8409b5ee41b45e05c45df6eef, type: 3}
+  m_Script: {fileID: 11500000, guid: 343afd649d0d4ec4a987d3f11a30e263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSpeed: 10.92
+  initialSpeed: 10.915
   spinTime: 11
   controller: {fileID: 2050725631}
 --- !u!212 &1314047781
@@ -21041,8 +21035,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2050725630}
-  - component: {fileID: 2050725631}
   - component: {fileID: 2050725632}
+  - component: {fileID: 2050725631}
   m_Layer: 0
   m_Name: SlotMachine
   m_TagString: Untagged
@@ -21075,7 +21069,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2050725629}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc75abf26cf64f545aacc43925c4d71d, type: 3}
+  m_Script: {fileID: 11500000, guid: 1fd983b97c0ff2241bba634d24ffb930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   reels:
@@ -21102,7 +21096,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2050725629}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa6aac048047f1249acc34c0b85ce61c, type: 3}
+  m_Script: {fileID: 11500000, guid: 188a756cd2a274f4c90ba075e8ba6fba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2058579172
