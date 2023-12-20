@@ -1,3 +1,4 @@
+using Assets.DataAccess.Classes.Base_Classes;
 using Assets.DataAccess.Interfaces;
 using Assets.DataAccess.Repositories;
 using DataAccess.Classes;
@@ -31,6 +32,8 @@ public class RoulleteWheel : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && properties.getCanWeTurn())
         {
+
+            Settings.Balance.setAmount(Settings.Balance.getAmount() - 25);
             StartCoroutine(TurnTheWheel());
         }
     }

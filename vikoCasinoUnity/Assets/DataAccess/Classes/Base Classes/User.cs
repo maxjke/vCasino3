@@ -10,10 +10,6 @@ namespace DataAccess.Classes
     {
         public User(string username, string password, string email, DateTime dateOfBirth, int balance_Id, int percentOfWin)
         {
-            if (int.Parse(dateOfBirth.ToString("yyyy"))-int.Parse(DateTime.Now.ToString("yyyy"))<18)
-            {
-                throw new Exception("The user must be of legal age");
-            }
 
             Username = username;
             Password = password;
@@ -58,5 +54,10 @@ namespace DataAccess.Classes
         {
             return this.Username;
         }
+        public int getId()
+        {
+            return this.Id;
+        }
+
     }
 }

@@ -10,7 +10,12 @@ namespace DataAccess.Classes
     {
         public Balance(double amount)
         {
-            Amount = amount;
+            this.Amount = amount;
+        }
+        public Balance(int id,double amount)
+        {
+            this.Id = id;
+            this.Amount = amount;
         }
 
         private double Amount {  get; set; }
@@ -22,6 +27,11 @@ namespace DataAccess.Classes
         public double getAmount() 
         {
             return this.Amount;
+        }
+
+        public override string ToString()
+        {
+            return getAmount().ToString();
         }
     }
 }

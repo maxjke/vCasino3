@@ -1,5 +1,6 @@
 ﻿using Assets.DataAccess.Classes;
 using Assets.DataAccess.Interfaces;
+using Assets.DataAccess.Interfaces.Roullete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Assets.DataAccess.Repositories
 {
-    public class RoulleteRepository 
+    public class RoulleteRepository : IRoulleteRepository
     {
         private IBetStrategy betStrategy;
         private IRandomNumberGenerator randomNumberGenerator;
