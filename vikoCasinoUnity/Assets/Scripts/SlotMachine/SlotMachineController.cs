@@ -4,10 +4,17 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.WSA;
 
+[System.Serializable]
+public class SymbolMultiplier
+{
+    public Sprite symbol;
+    public int multiplier;
+}
 public class SlotMachineController : MonoBehaviour
 {
     public GameObject[] reels; // Массив GameObject барабанов
     public Sprite[] symbols; // Массив всех возможных спрайтов символов
+    public SymbolMultiplier[] symbolMultipliers;
     private Vector3[] initialPositions; // Массив для хранения начальных позиций барабанов
     // Вызывается для начала вращения и рандомизации барабанов
     private int stoppedReels;
@@ -87,33 +94,55 @@ public class SlotMachineController : MonoBehaviour
 
     public void CheckWin(int r, int p)
     {
-        var x = WinningLines(GetSymbolAtPosition(reels[r],p));
-        if (x)
+        int bet = 1;
+        Sprite firstSymbol = GetSymbolAtPosition(reels[r], p);
+        int winningLinesCount = WinningLines(firstSymbol);
+
+        if (winningLinesCount > 0)
         {
-            Debug.Log("Win");
+            List<Sprite> landedSymbols = GetLandedSymbols();
+            int reward = CalculateReward(landedSymbols, bet);
+            Debug.Log("Win on " + winningLinesCount + " lines with reward: " + reward);
         }
         else
         {
             Debug.Log("Lose");
         }
-        
-    
-    }
-    
-    public bool WinningLines(Sprite firstSymbol)
-    {
-       
-        
-        for (int i = 0; i < 3; i++)
-        {
-            if (GetSymbolAtPosition(reels[i], 0) != firstSymbol)
-            {
-                   return false;
-            }
-        }
-        return true;
     }
 
+    public int WinningLines(Sprite firstSymbol)
+    {
+        int totalWinningLines = 0;
+
+        for (int line = 0; line < 3; line++)
+        {
+            if (IsWinningLine(firstSymbol, line))
+            {
+                totalWinningLines++;
+            }
+        }
+
+        return totalWinningLines;
+    }
+
+    private bool IsWinningLine(Sprite symbol, int line)
+    {
+        int count = 0;
+        for (int reel = 0; reel < reels.Length; reel++)
+        {
+            Sprite currentSymbol = GetSymbolAtPosition(reels[reel], line);
+            if (currentSymbol == symbol)
+            {
+                count++;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        return count >= 3;
+    }
 
     public Sprite GetSymbolAtPosition(GameObject reel, int position)
     {
@@ -144,5 +173,58 @@ public class SlotMachineController : MonoBehaviour
             Debug.LogError("SpriteRenderer not found on the symbol at position: " + position);
             return null;
         }
+    }
+
+    public List<Sprite> GetLandedSymbols()
+    {
+        List<Sprite> landedSymbols = new List<Sprite>();
+
+        for (int reelIndex = 0; reelIndex < reels.Length; reelIndex++)
+        {
+            for (int position = 0; position < 3; position++)
+            { // Предполагая 3 позиции на барабане
+                Sprite symbol = GetSymbolAtPosition(reels[reelIndex], position);
+                if (symbol != null)
+                {
+                    landedSymbols.Add(symbol);
+                }
+            }
+        }
+
+        return landedSymbols;
+    }
+    public int CalculateReward(List<Sprite> landedSymbols, int betAmount)
+    {
+        // Словарь для подсчета количества каждого символа
+        Dictionary<Sprite, int> symbolCounts = new Dictionary<Sprite, int>();
+        int totalReward = 0;
+
+        // Подсчитываем количество каждого символа
+        foreach (var symbol in landedSymbols)
+        {
+            if (symbolCounts.ContainsKey(symbol))
+            {
+                symbolCounts[symbol]++;
+            }
+            else
+            {
+                symbolCounts[symbol] = 1;
+            }
+        }
+
+        // Применяем множители к количествам
+        foreach (var symbolCount in symbolCounts)
+        {
+            foreach (var symbolMultiplier in symbolMultipliers)
+            {
+                if (symbolCount.Key == symbolMultiplier.symbol)
+                {
+                    totalReward += symbolCount.Value * symbolMultiplier.multiplier * betAmount;
+                    break; // После применения множителя для символа, переходим к следующему
+                }
+            }
+        }
+
+        return totalReward;
     }
 }

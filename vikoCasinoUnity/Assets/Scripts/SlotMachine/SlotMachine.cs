@@ -15,4 +15,6 @@ public class SlotMachine : MonoBehaviour, ISlotMachine
     {
         machineController.StartSpin();
     }
+
+    
 }
