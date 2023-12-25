@@ -50,9 +50,10 @@ public class SlotMachineController : MonoBehaviour
         stoppedReels++;
         if(stoppedReels == reels.Length)
         {
-            CheckWin(0,0);
-            CheckWin(0, 1);
-            CheckWin(0, 2);
+            CheckWin(0, 0, 1);
+            CheckWin(0, 1, 1);
+            CheckWin(0, 2, 1);
+            CheckVLineWin(1);
             Spin.isAnyReelSpinning = false;
             stoppedReels = 0;
            
@@ -92,9 +93,9 @@ public class SlotMachineController : MonoBehaviour
         }
     }
 
-    public void CheckWin(int r, int p)
+    public void CheckWin(int r, int p, int UserBet)
     {
-        int bet = 1;
+        int bet = UserBet;
         Sprite firstSymbol = GetSymbolAtPosition(reels[r], p);
         int winningLinesCount = WinningLines(firstSymbol);
 
@@ -102,7 +103,7 @@ public class SlotMachineController : MonoBehaviour
         {
             List<Sprite> landedSymbols = GetLandedSymbols();
             int reward = CalculateReward(landedSymbols, bet);
-            Debug.Log("Win on " + winningLinesCount + " lines with reward: " + reward);
+            Debug.Log("Win on " + winningLinesCount + " horizontal lines with reward: " + reward);
         }
         else
         {
@@ -110,19 +111,39 @@ public class SlotMachineController : MonoBehaviour
         }
     }
 
+    public void CheckVLineWin(int UserBet)
+    {
+        for (int length = 5; length >= 3; length--)
+        {
+            // Предполагаем, что символ для проверки берется с первого барабана и верхней строки
+            Sprite firstSymbol = GetSymbolAtPosition(reels[0], 0);
+
+            if (IsVWinningLine(firstSymbol, length))
+            {
+                int bet = UserBet;
+                List<Sprite> landedSymbols = GetLandedSymbols();
+                int reward = CalculateReward(landedSymbols, bet);
+                Debug.Log($"Win on V-line of length {length} with reward: " + reward);
+                return; // При нахождении выигрышной линии прекращаем проверку
+            }
+        }
+
+        Debug.Log("No win on V-line");
+    }
+
     public int WinningLines(Sprite firstSymbol)
     {
-        int totalWinningLines = 0;
+        int totalHorizontalWinningLines = 0;
 
         for (int line = 0; line < 3; line++)
         {
             if (IsWinningLine(firstSymbol, line))
             {
-                totalWinningLines++;
+                totalHorizontalWinningLines++;
             }
         }
 
-        return totalWinningLines;
+        return totalHorizontalWinningLines;
     }
 
     private bool IsWinningLine(Sprite symbol, int line)
@@ -143,6 +164,40 @@ public class SlotMachineController : MonoBehaviour
 
         return count >= 3;
     }
+
+    private bool IsVWinningLine(Sprite symbol, int length)
+    {
+        if (length < 3 || length > 5) return false;
+
+        int midReel = (reels.Length - 1) / 2;
+        int lastIndex = length - 1;
+
+        for (int i = 0; i < length; i++)
+        {
+            int reelIndex, position;
+
+            if (i <= midReel)
+            {
+                // Восходящая часть V
+                reelIndex = i;
+                position = i;
+            }
+            else
+            {
+                // Нисходящая часть V
+                reelIndex = lastIndex - (i - midReel);
+                position = lastIndex - i;
+            }
+
+            if (GetSymbolAtPosition(reels[reelIndex], position) != symbol)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
 
     public Sprite GetSymbolAtPosition(GameObject reel, int position)
     {
