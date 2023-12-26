@@ -9,6 +9,6 @@ namespace Assets.DataAccess.Interfaces
 {
     public interface IBetStrategy
     {
-        RoulleteBet DetermineWinningBet(int x);
+        RouletteBet DetermineWinningBet(float x);
     }
 }

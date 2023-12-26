@@ -8,23 +8,23 @@ namespace DataAccess.Classes
 {
     public class Balance : Entity
     {
-        public Balance(double amount)
+        public Balance(decimal amount)
         {
             this.Amount = amount;
         }
-        public Balance(int id,double amount)
+        public Balance(int id,decimal amount)
         {
             this.Id = id;
             this.Amount = amount;
         }
 
-        private double Amount {  get; set; }
+        private decimal Amount {  get; set; }
 
-        public void setAmount(double x)
+        public void setAmount(decimal x)
         {
             this.Amount = x;
         }
-        public double getAmount() 
+        public decimal getAmount() 
         {
             return this.Amount;
         }

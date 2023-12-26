@@ -1,4 +1,5 @@
-﻿using DataAccess.Classes;
+﻿using Assets.DataAccess.Classes.Roullete;
+using DataAccess.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +12,13 @@ namespace Assets.DataAccess.Classes.Base_Classes
     public static class Settings
     {
         public static User User { get; private set; }
-        public static Balance Balance { get; set; }
+        public static Balance Balance { get; private set; }
+        public static GameSession GameSession = new GameSession();
 
-        public static void setStaticUser(User user, Balance balance)
+        public static void setStaticSettings(User user, Balance balance)
         {
-            User = user;
-            Balance = balance;
+            Settings.User = user;
+            Settings.Balance = balance;
         }
     }
 }

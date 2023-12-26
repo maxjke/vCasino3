@@ -1,4 +1,9 @@
+using Assets.DataAccess.Classes;
+using Assets.DataAccess.Classes.Roullete;
+using Assets.DataAccess.Interfaces.Roullete;
+using Assets.DataAccess.Repositories.Roullete;
 using Michsky.MUIP;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,29 +16,47 @@ public class BetButton : MonoBehaviour
 {
     public ButtonManager button;
     public TextMeshProUGUI input;
+    private IGameSessionManager betManager;
+    private RouletteUserBets userBet;
+
+    private void Awake()
+    {
+        betManager = new GameSessionManager();
+    }
 
     public void OnButtonClick()
     {
+
         string parsedText = input.GetParsedText();
         string parsedbuttonText = button.buttonText;
+
 
         parsedText = RemoveInvisibleCharacters(parsedText).Replace(" ˆ", "");
         parsedbuttonText = RemoveInvisibleCharacters(parsedbuttonText).Replace(" ˆ", "");
 
         if (string.IsNullOrWhiteSpace(parsedText))
         {
-            Debug.Log("[OnButtonClick] Parsed text is null or whitespace.");
+            Debug.LogWarning("[OnButtonClick] Parsed text is null or whitespace.");
             return;
         }
+
+        string buttonName = RemoveInvisibleCharacters(button.ToSafeString());
+
+        userBet = new RouletteUserBets(buttonName,int.Parse(parsedText));
 
         if (string.IsNullOrWhiteSpace(parsedbuttonText))
         {
             button.buttonText = int.Parse(parsedText) + " ˆ";
+
+            betManager.AddUserBet(userBet);
+
             button.UpdateUI();
             return;
         }
 
-        button.buttonText = int.Parse(parsedText) + int.Parse(parsedbuttonText) + " ˆ";
+        betManager.AddUserBet(userBet);
+
+        button.buttonText = (int.Parse(parsedText) + int.Parse(parsedbuttonText)) + " ˆ";
         button.UpdateUI();
     }
 

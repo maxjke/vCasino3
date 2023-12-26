@@ -8,8 +8,9 @@ namespace Assets.DataAccess.Classes.Roullete
 {
     public class GameSession
     {
-        public List<RoulleteUserBets> Bets { get; set; } = new List<RoulleteUserBets>();
-        public RoulleteBet WonBet { get; set; }
+        public List<RouletteUserBets> Bets { get; set; } = new List<RouletteUserBets>();
+
+        public RouletteBet WonBet { get; set; }
 
         public decimal balanceChange { get; set; }
 

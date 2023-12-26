@@ -1,6 +1,9 @@
+using Assets.DataAccess.Classes;
 using Assets.DataAccess.Classes.Base_Classes;
 using Assets.DataAccess.Interfaces;
+using Assets.DataAccess.Interfaces.Roullete;
 using Assets.DataAccess.Repositories;
+using Assets.DataAccess.Repositories.Roullete;
 using DataAccess.Classes;
 using System;
 using System.Collections;
@@ -11,18 +14,23 @@ using UnityEngine.UI;
 public class RoulleteWheel : MonoBehaviour
 {
     // Start is called before the first frame update
-    private RoulleteGame properties;
-    private RoulleteRepository controller;
+    private RouletteGame properties;
+    private IBetStrategy betStrategy;
+    private IRandomNumberOfTurns random;
+    private IGameSessionManager betManager;
+    private IWinChecker winChecker;
+
 
     public Text winningText;
 
     void Start()
     {
-        IBetStrategy startegy = new RoulleteDefaultBetStrategy();
-        IRandomNumberGenerator random = new RandomNumberGenerator();
+        betStrategy = new RouletteDefaultBetStrategy(new BetDataAccessor());
+        random = new RandomNumberOfTurns();
+        betManager = new GameSessionManager();
+        winChecker = new WinChecker(new Combinations(new BetDataAccessor()));
 
-        properties = new RoulleteGame();
-        controller = new RoulleteRepository(startegy,random);
+        properties = new RouletteGame();
 
         properties.setCanWeTurn(true);
     }
@@ -32,8 +40,6 @@ public class RoulleteWheel : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && properties.getCanWeTurn())
         {
-
-            Settings.Balance.setAmount(Settings.Balance.getAmount() - 25);
             StartCoroutine(TurnTheWheel());
         }
     }
@@ -42,7 +48,7 @@ public class RoulleteWheel : MonoBehaviour
     {
         properties.setCanWeTurn(false);
 
-        properties.setNumberOfTurns(controller.GetRandomNumberOfTurns());
+        properties.setNumberOfTurns(random.GetNumberOfTurns());
 
         properties.setSpeed(0.01f);
 
@@ -89,20 +95,26 @@ public class RoulleteWheel : MonoBehaviour
             yield return new WaitForSeconds(properties.getSpeed());
         }
 
-        TurnIfUneven();
+        NormalizeWheelRotation();
+        float finalAngle = transform.eulerAngles.z;
 
-        winningText.text = controller.GetWinBet((int)(transform.eulerAngles.z / anglePerTurn)).ToString();
+        RouletteBet winningBet = betStrategy.DetermineWinningBet(finalAngle);
+        Settings.GameSession.WonBet = winningBet;
+
+        winningText.text = winningBet.ToString();
+
+        winChecker.CheckWin();
+
+        betManager.DeleteAllBets();
 
         properties.setCanWeTurn(true);
     }
 
-    public void TurnIfUneven()
+    private void NormalizeWheelRotation()
     {
-        float anglePerTurn = 360f / 37;
-        while (transform.eulerAngles.z % anglePerTurn > anglePerTurn / 2)
-        {
-            transform.Rotate(0, 0, anglePerTurn / 2);
-        }
+        float currentZ = transform.eulerAngles.z % 360;
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, currentZ);
     }
-
 }
+
+

@@ -15,7 +15,7 @@ public class PreSettings : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Settings.setStaticUser(User,balance);
+        Settings.setStaticSettings(User,balance);
     }
 
     // Update is called once per frame
