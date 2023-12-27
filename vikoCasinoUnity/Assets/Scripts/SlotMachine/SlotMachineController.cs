@@ -8,15 +8,18 @@ using UnityEngine.WSA;
 public class SymbolMultiplier
 {
     public Sprite symbol;
-    public int multiplier;
+    public int multiplierForThree; // Множитель для 3 повторений
+    public int multiplierForFour;  // Множитель для 4 повторений
+    public int multiplierForFive;  // Множитель для 5 повторений
 }
+
 public class SlotMachineController : MonoBehaviour
 {
-    public GameObject[] reels; // Массив GameObject барабанов
-    public Sprite[] symbols; // Массив всех возможных спрайтов символов
+    public GameObject[] reels; 
+    public Sprite[] symbols; 
     public SymbolMultiplier[] symbolMultipliers;
-    private Vector3[] initialPositions; // Массив для хранения начальных позиций барабанов
-    // Вызывается для начала вращения и рандомизации барабанов
+    private Vector3[] initialPositions; 
+ 
     private int stoppedReels;
 
    
@@ -28,11 +31,10 @@ public class SlotMachineController : MonoBehaviour
         {
             RandomizeReel(reel);
         }
-        // Инициализируем массив начальных позиций
         initialPositions = new Vector3[reels.Length];
         for (int i = 0; i < reels.Length; i++)
         {
-            // Сохраняем начальную позицию каждого барабана
+          
             initialPositions[i] = reels[i].transform.position;
         }
     }
@@ -50,10 +52,11 @@ public class SlotMachineController : MonoBehaviour
         stoppedReels++;
         if(stoppedReels == reels.Length)
         {
-            CheckWin(0, 0, 1);
-            CheckWin(0, 1, 1);
-            CheckWin(0, 2, 1);
+            CheckWin(0, 1);
+            CheckWin(1, 1);
+            CheckWin(2, 1);
             CheckVLineWin(1);
+            CheckInverseVLineWin(1);
             Spin.isAnyReelSpinning = false;
             stoppedReels = 0;
            
@@ -64,7 +67,6 @@ public class SlotMachineController : MonoBehaviour
         }
     }
 
-    // Рандомизация символов на отдельном барабане
     public void RandomizeReel(GameObject reel)
     {
         foreach (Transform symbol in reel.transform)
@@ -85,51 +87,64 @@ public class SlotMachineController : MonoBehaviour
         
         for (int i = 0; i < reels.Length; i++)
         {
-            // Сбросить позицию каждого барабана в его начальную позицию
+            
             reels[i].transform.position = initialPositions[i];
-            // Рандомизировать символы на барабане
+          
             RandomizeReel(reels[i]);
             
         }
     }
 
-    public void CheckWin(int r, int p, int UserBet)
+    public void CheckWin(int lineIndex, int betAmount)
     {
-        int bet = UserBet;
-        Sprite firstSymbol = GetSymbolAtPosition(reels[r], p);
-        int winningLinesCount = WinningLines(firstSymbol);
+       
 
-        if (winningLinesCount > 0)
+        List<Sprite> winningSymbols = GetWinningSymbols(LineType.Horizontal, lineIndex);
+        if (winningSymbols.Count > 0)
         {
-            List<Sprite> landedSymbols = GetLandedSymbols();
-            int reward = CalculateReward(landedSymbols, bet);
-            Debug.Log("Win on " + winningLinesCount + " horizontal lines with reward: " + reward);
+            int reward = CalculateReward(winningSymbols, betAmount);
+            Debug.Log($"Win on horizontal line with reward: {reward}");
         }
         else
         {
-            Debug.Log("Lose");
+            Debug.Log("No win on horizontal line");
         }
     }
 
-    public void CheckVLineWin(int UserBet)
+    public void CheckVLineWin(int betAmount)
     {
         for (int length = 5; length >= 3; length--)
         {
-            // Предполагаем, что символ для проверки берется с первого барабана и верхней строки
-            Sprite firstSymbol = GetSymbolAtPosition(reels[0], 0);
-
-            if (IsVWinningLine(firstSymbol, length))
+            List<Sprite> winningSymbols = GetWinningSymbols(LineType.VShape, 0, length);
+            if (winningSymbols.Count > 0)
             {
-                int bet = UserBet;
-                List<Sprite> landedSymbols = GetLandedSymbols();
-                int reward = CalculateReward(landedSymbols, bet);
-                Debug.Log($"Win on V-line of length {length} with reward: " + reward);
-                return; // При нахождении выигрышной линии прекращаем проверку
+                int reward = CalculateReward(winningSymbols, betAmount);
+                Debug.Log($"Win on V-line of length {length} with reward: {reward}");
+                return; // Выходим из цикла, если нашли выигрышную линию
             }
         }
 
         Debug.Log("No win on V-line");
     }
+
+
+    public void CheckInverseVLineWin(int betAmount)
+    {
+        for (int length = 5; length >= 3; length--)
+        {
+            List<Sprite> winningSymbols = GetWinningSymbols(LineType.InverseV, 0, length);
+            if (winningSymbols.Count > 0)
+            {
+                int reward = CalculateReward(winningSymbols, betAmount);
+                Debug.Log($"Win on inverse V-line of length {length} with reward: {reward}");
+                return; // Выходим из цикла, если нашли выигрышную линию
+            }
+        }
+
+        Debug.Log("No win on inverse V-line");
+    }
+
+
 
     public int WinningLines(Sprite firstSymbol)
     {
@@ -178,13 +193,13 @@ public class SlotMachineController : MonoBehaviour
 
             if (i <= midReel)
             {
-                // Восходящая часть V
+                
                 reelIndex = i;
                 position = i;
             }
             else
             {
-                // Нисходящая часть V
+                
                 reelIndex = lastIndex - (i - midReel);
                 position = lastIndex - i;
             }
@@ -198,10 +213,37 @@ public class SlotMachineController : MonoBehaviour
         return true;
     }
 
-
-    public Sprite GetSymbolAtPosition(GameObject reel, int position)
+    private bool IsInverseVWinningLine(Sprite symbol, int length)
     {
-        // Позиции выигрышных символов в вашей иерархии, предполагая что last 3 - это 0, last 2 - это 1 и last 1 - это 2
+
+        if (length == 5)
+        {
+            return GetSymbolAtPosition(reels[0], 2) == symbol &&
+                   GetSymbolAtPosition(reels[1], 1) == symbol &&
+                   GetSymbolAtPosition(reels[2], 0) == symbol &&
+                   GetSymbolAtPosition(reels[3], 1) == symbol &&
+                   GetSymbolAtPosition(reels[4], 2) == symbol;
+        }
+        else if (length == 4)
+        {
+            return GetSymbolAtPosition(reels[0], 2) == symbol &&
+                   GetSymbolAtPosition(reels[1], 1) == symbol &&
+                   GetSymbolAtPosition(reels[2], 0) == symbol &&
+                   GetSymbolAtPosition(reels[3], 1) == symbol;
+        }
+        else if (length == 3)
+        {
+            return GetSymbolAtPosition(reels[0], 2) == symbol &&
+                   GetSymbolAtPosition(reels[1], 1) == symbol &&
+                   GetSymbolAtPosition(reels[2], 0) == symbol;
+        }
+
+        return false;
+    }
+
+        public Sprite GetSymbolAtPosition(GameObject reel, int position)
+    {
+        
         string[] winningSymbolNames = { "last 1", "last 2", "last 3" };
 
         if (position < 0 || position >= winningSymbolNames.Length)
@@ -210,7 +252,7 @@ public class SlotMachineController : MonoBehaviour
             return null;
         }
 
-        // Ищем дочерний объект по имени, соответствующему выигрышному символу
+       
         Transform symbolTransform = reel.transform.Find(winningSymbolNames[position]);
         if (symbolTransform == null)
         {
@@ -230,32 +272,67 @@ public class SlotMachineController : MonoBehaviour
         }
     }
 
-    public List<Sprite> GetLandedSymbols()
+    public enum LineType
     {
-        List<Sprite> landedSymbols = new List<Sprite>();
+        Horizontal,
+        VShape,
+        InverseV
+    }
 
-        for (int reelIndex = 0; reelIndex < reels.Length; reelIndex++)
+    public List<Sprite> GetWinningSymbols(LineType lineType, int lineIndex, int length = 0)
+    {
+        List<Sprite> winningSymbols = new List<Sprite>();
+
+        switch (lineType)
         {
-            for (int position = 0; position < 3; position++)
-            { // Предполагая 3 позиции на барабане
-                Sprite symbol = GetSymbolAtPosition(reels[reelIndex], position);
-                if (symbol != null)
+            case LineType.Horizontal:
+                Sprite firstSymbol = GetSymbolAtPosition(reels[0], lineIndex);
+                if (IsWinningLine(firstSymbol, lineIndex))
                 {
-                    landedSymbols.Add(symbol);
+                    for (int reel = 0; reel < reels.Length; reel++)
+                    {
+                        winningSymbols.Add(GetSymbolAtPosition(reels[reel], lineIndex));
+                    }
                 }
-            }
+                break;
+
+            case LineType.VShape:
+            case LineType.InverseV:
+                Sprite symbol = lineType == LineType.VShape ? GetSymbolAtPosition(reels[0], 0) : GetSymbolAtPosition(reels[0], 2);
+                bool isWinning = lineType == LineType.VShape ? IsVWinningLine(symbol, length) : IsInverseVWinningLine(symbol, length);
+                if (isWinning)
+                {
+                    int midReel = (reels.Length - 1) / 2;
+                    int lastIndex = length - 1;
+
+                    for (int i = 0; i < length; i++)
+                    {
+                        int reelIndex, position;
+                        if (lineType == LineType.VShape)
+                        {
+                            reelIndex = i <= midReel ? i : lastIndex - (i - midReel);
+                            position = i <= midReel ? i : lastIndex - i;
+                        }
+                        else
+                        {
+                            reelIndex = i <= midReel ? i : lastIndex - (i - midReel);
+                            position = i <= midReel ? 2 - i : 1 + (i - midReel);
+                        }
+                        winningSymbols.Add(GetSymbolAtPosition(reels[reelIndex], position));
+                    }
+                }
+                break;
         }
 
-        return landedSymbols;
+        return winningSymbols;
     }
-    public int CalculateReward(List<Sprite> landedSymbols, int betAmount)
+    public int CalculateReward(List<Sprite> winningSymbols, int betAmount)
     {
-        // Словарь для подсчета количества каждого символа
         Dictionary<Sprite, int> symbolCounts = new Dictionary<Sprite, int>();
         int totalReward = 0;
 
-        // Подсчитываем количество каждого символа
-        foreach (var symbol in landedSymbols)
+        // Подсчет символов в выигрышной линии
+        foreach (var symbol in winningSymbols)
         {
             if (symbolCounts.ContainsKey(symbol))
             {
@@ -267,19 +344,34 @@ public class SlotMachineController : MonoBehaviour
             }
         }
 
-        // Применяем множители к количествам
+        // Расчет награды
         foreach (var symbolCount in symbolCounts)
         {
             foreach (var symbolMultiplier in symbolMultipliers)
             {
                 if (symbolCount.Key == symbolMultiplier.symbol)
                 {
-                    totalReward += symbolCount.Value * symbolMultiplier.multiplier * betAmount;
-                    break; // После применения множителя для символа, переходим к следующему
+                    int multiplier = 0;
+                    switch (symbolCount.Value)
+                    {
+                        case 3:
+                            multiplier = symbolMultiplier.multiplierForThree;
+                            break;
+                        case 4:
+                            multiplier = symbolMultiplier.multiplierForFour;
+                            break;
+                        case 5:
+                            multiplier = symbolMultiplier.multiplierForFive;
+                            break;
+                    }
+
+                    totalReward += multiplier * betAmount;
+                    break;
                 }
             }
         }
 
         return totalReward;
     }
+
 }
