@@ -5,6 +5,7 @@ using Assets.DataAccess.Interfaces.Roullete;
 using Assets.DataAccess.Repositories;
 using Assets.DataAccess.Repositories.Roullete;
 using DataAccess.Classes;
+using Michsky.MUIP;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,6 +20,10 @@ public class RoulleteWheel : MonoBehaviour
     private IRandomNumberOfTurns random;
     private IGameSessionManager betManager;
     private IWinChecker winChecker;
+    private INotificationManager notificationManager;
+    [SerializeField] private Michsky.MUIP.NotificationManager myNotification;
+    [SerializeField] private Sprite winIcon;
+    [SerializeField] private Sprite loseIcon;
 
 
     public Text winningText;
@@ -29,6 +34,7 @@ public class RoulleteWheel : MonoBehaviour
         random = new RandomNumberOfTurns();
         betManager = new GameSessionManager();
         winChecker = new WinChecker(new Combinations(new BetDataAccessor()));
+        notificationManager = new NotificationManager(myNotification, this);
 
         properties = new RouletteGame();
 
@@ -104,6 +110,17 @@ public class RoulleteWheel : MonoBehaviour
         winningText.text = winningBet.ToString();
 
         winChecker.CheckWin();
+
+        Settings.Balance.setAmount(Settings.Balance.getAmount() + Settings.GameSession.balanceChange);
+
+        if (Settings.GameSession.balanceChange > 0)
+        {
+            notificationManager.ShowNotification("Win", Settings.GameSession.balanceChange + " ˆ",winIcon);
+        }
+        else
+        {
+            notificationManager.ShowNotification("Lose", Settings.GameSession.balanceChange + " ˆ", loseIcon);
+        }
 
         betManager.DeleteAllBets();
 

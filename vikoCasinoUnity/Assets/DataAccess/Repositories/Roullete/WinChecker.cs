@@ -41,7 +41,7 @@ namespace Assets.DataAccess.Repositories.Roullete
                 }
             }
 
-            Settings.Balance.setAmount(Settings.Balance.getAmount() + Settings.GameSession.balanceChange);
+            //Settings.Balance.setAmount(Settings.Balance.getAmount() + Settings.GameSession.balanceChange);
 
             return hasWon;
         }
