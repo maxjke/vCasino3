@@ -5,5 +5,5 @@ using UnityEngine;
 public interface ISpin 
 {
      void StartSpinning();
-     IEnumerator SpinReel();
+   
 }
