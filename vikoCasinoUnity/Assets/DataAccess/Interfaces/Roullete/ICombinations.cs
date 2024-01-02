@@ -21,6 +21,8 @@ namespace Assets.DataAccess.Interfaces.Roullete
         public List<RouletteBet> GetOdd();
         public List<RouletteBet> GetOnlyRed();
         public List<RouletteBet> GetOnlyBlack();
+        public List<RouletteBet> GetGreen();
+        public List<RouletteBet> GetSingleNumberBets(string nameOfBet);
 
     }
 }

@@ -41,8 +41,6 @@ namespace Assets.DataAccess.Repositories.Roullete
                 }
             }
 
-            //Settings.Balance.setAmount(Settings.Balance.getAmount() + Settings.GameSession.balanceChange);
-
             return hasWon;
         }
 
@@ -80,8 +78,10 @@ namespace Assets.DataAccess.Repositories.Roullete
                     return combinations.GetOnlyRed();
                 case "Only Black":
                     return combinations.GetOnlyBlack();
-                default:
-                    return new List<RouletteBet>();
+                case "0 Green":
+                    return combinations.GetGreen();
+                    default:
+                    return combinations.GetSingleNumberBets(bet.NameOfBet);
             }
         }
 
@@ -104,8 +104,10 @@ namespace Assets.DataAccess.Repositories.Roullete
                 case "Only Red":
                 case "Only Black":
                     return 2;
+                case "0 Green":
+                    return 35; 
                 default:
-                    return 0;
+                    return 35;
             }
         }
 

@@ -126,5 +126,20 @@ namespace Assets.DataAccess.Repositories.Roullete
             }
             return bets;
         }
+
+        public List<RouletteBet> GetGreen()
+        {
+            return new List<RouletteBet> { data.GetBetByNumber(0) };
+        }
+
+        public List<RouletteBet> GetSingleNumberBets(string n)
+        {
+            List<RouletteBet> bets = new List<RouletteBet>();
+            for (int i = 0; i <= 36; i++)
+            {
+                bets.Add(data.GetBetByNumber(i));
+            }
+            return bets.Where(x=> x.ToString() == n).ToList();
+        }
     }
 }

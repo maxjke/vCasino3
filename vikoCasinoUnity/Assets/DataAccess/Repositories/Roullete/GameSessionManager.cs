@@ -26,6 +26,7 @@ namespace Assets.DataAccess.Repositories.Roullete
         {
             Settings.GameSession.WonBet = bet;
         }
+
         public decimal getAllBetsMoney()
         {
             int x = 0;
