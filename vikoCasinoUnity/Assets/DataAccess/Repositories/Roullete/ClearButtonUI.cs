@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace Assets.DataAccess.Repositories.Roullete
 {
-    public class UIManager : IClearButtonUI
+    public class ClearButtonUI : IClearButtonUI
     {
         private List<ButtonManager> Buttons;
-        public UIManager(List<ButtonManager> x)
+        public ClearButtonUI(List<ButtonManager> x)
         {
             Buttons = x; 
         }

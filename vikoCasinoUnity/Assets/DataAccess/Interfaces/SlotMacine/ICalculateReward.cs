@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Assets.DataAccess.Interfaces.SlotMacine
 {
-     interface ICalculateReward
+    public  interface ICalculateReward
     {
         int CalculateReward(List<Sprite> winningSymbols, int betAmount);
     }

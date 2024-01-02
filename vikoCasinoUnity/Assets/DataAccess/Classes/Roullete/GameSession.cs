@@ -13,6 +13,6 @@ namespace Assets.DataAccess.Classes.Roullete
         public RouletteBet WonBet { get; set; }
 
         public decimal balanceChange { get; set; }
-
+        public bool CanWeBet { get; set; } = true;
     }
 }

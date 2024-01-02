@@ -18,7 +18,7 @@ public class ClearButtonText : MonoBehaviour
 
     void Start()
     {
-        clearButtonUI = new Assets.DataAccess.Repositories.Roullete.UIManager(buttons);
+        clearButtonUI = new Assets.DataAccess.Repositories.Roullete.ClearButtonUI(buttons);
         ClearAllButtonTexts();
     }
 }

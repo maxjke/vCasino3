@@ -9,6 +9,7 @@ using Michsky.MUIP;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,9 +22,11 @@ public class RoulleteWheel : MonoBehaviour
     private IGameSessionManager betManager;
     private IWinChecker winChecker;
     private INotificationManager notificationManager;
+    private IClearButtonUI clearButton;
     [SerializeField] private Michsky.MUIP.NotificationManager myNotification;
     [SerializeField] private Sprite winIcon;
     [SerializeField] private Sprite loseIcon;
+    [SerializeField] private List<ButtonManager> buttons;
 
 
     public Text winningText;
@@ -35,6 +38,7 @@ public class RoulleteWheel : MonoBehaviour
         betManager = new GameSessionManager();
         winChecker = new WinChecker(new Combinations(new BetDataAccessor()));
         notificationManager = new NotificationManager(myNotification, this);
+        clearButton = new Assets.DataAccess.Repositories.Roullete.ClearButtonUI(buttons);
 
         properties = new RouletteGame();
 
@@ -44,7 +48,9 @@ public class RoulleteWheel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && properties.getCanWeTurn())
+        var totalBetAmount = Settings.GameSession.Bets?.Sum(x => x?.Amount) ?? 0;
+
+        if (Input.GetKeyDown(KeyCode.Space) && properties.getCanWeTurn() && totalBetAmount <= Settings.Balance.getAmount())
         {
             StartCoroutine(TurnTheWheel());
         }
@@ -52,7 +58,10 @@ public class RoulleteWheel : MonoBehaviour
 
     private IEnumerator TurnTheWheel()
     {
+        winningText.text = "";
+
         properties.setCanWeTurn(false);
+        Settings.GameSession.CanWeBet = false;
 
         properties.setNumberOfTurns(random.GetNumberOfTurns());
 
@@ -117,12 +126,13 @@ public class RoulleteWheel : MonoBehaviour
         {
             notificationManager.ShowNotification("Win", Settings.GameSession.balanceChange + " ˆ",winIcon);
         }
-        else
+        else if (Settings.GameSession.balanceChange < 0)
         {
             notificationManager.ShowNotification("Lose", Settings.GameSession.balanceChange + " ˆ", loseIcon);
         }
 
-        betManager.DeleteAllBets();
+        Settings.GameSession = new Assets.DataAccess.Classes.Roullete.GameSession();
+        clearButton.ClearAllButtonTexts();
 
         properties.setCanWeTurn(true);
     }

@@ -9,7 +9,7 @@ namespace Assets.DataAccess.Classes.Roullete
 {
     public class GameSession<Tbet> where Tbet : Bet
     {
-        public List<Tbet> Bets { get; set; } = new List<Tbet>();
+        public List<RouletteUserBets> Bets { get; set; } = new List<RouletteUserBets>();
         public RouletteBet WonBet { get; set; }
 
         public decimal balanceChange { get; set; }

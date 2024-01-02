@@ -26,7 +26,6 @@ public class NotificationManager : INotificationManager
         myNotification.UpdateUI();
         myNotification.Open();
 
-        // »спользуем переданный MonoBehaviour дл€ запуска корутины
         coroutineStarter.StartCoroutine(CloseAfterDelay(5.0f));
     }
 

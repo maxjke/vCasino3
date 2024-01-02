@@ -21,6 +21,7 @@ namespace DataAccess.Classes
         protected float NumberOfTurns { get; set; }
         protected bool CanWeTurn { get; set; }
         protected float Speed { get; set; }
+        protected bool CanWeBet { get; set; }
 
         public void setCanWeTurn(bool x)
         {

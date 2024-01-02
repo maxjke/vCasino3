@@ -14,7 +14,7 @@ namespace Assets.DataAccess.Repositories.Roullete
     {
         public void DeleteAllBets()
         {
-            Settings.GameSession.Bets.Clear();
+            Settings.GameSession.Bets = new List<RouletteUserBets>();
         }
 
         public void AddUserBet(RouletteUserBets userBet)

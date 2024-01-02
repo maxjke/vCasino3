@@ -13,6 +13,11 @@ namespace Assets.DataAccess.Classes
         public int Number { get; set; }
         public decimal PayoutMultiplier { get; set; }
 
+        public RouletteBet()
+        {
+            
+        }
+
         public RouletteBet(RouletteColors color, int number)
         {
             this.Color = color;
