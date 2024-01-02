@@ -3,20 +3,15 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.WSA;
+using Assets.DataAccess.Interfaces;
+using Assets.DataAccess.Interfaces.SlotMacine;
+using Assets.DataAccess.Classes.SlotMacine;
 
-[System.Serializable]
-public class SymbolMultiplier
-{
-    public Sprite symbol;
-    public int multiplierForThree; // Множитель для 3 повторений
-    public int multiplierForFour;  // Множитель для 4 повторений
-    public int multiplierForFive;  // Множитель для 5 повторений
-}
-
-public class SlotMachineController : MonoBehaviour
+public class SlotMachineController : MonoBehaviour, ISlotMachineController, IReelController, IGetSymbols, ICalculateReward, ILineCheck
 {
     public GameObject[] reels; 
     public Sprite[] symbols; 
+    
     public SymbolMultiplier[] symbolMultipliers;
     private Vector3[] initialPositions; 
  
@@ -120,7 +115,7 @@ public class SlotMachineController : MonoBehaviour
             {
                 int reward = CalculateReward(winningSymbols, betAmount);
                 Debug.Log($"Win on V-line of length {length} with reward: {reward}");
-                return; // Выходим из цикла, если нашли выигрышную линию
+                return; 
             }
         }
 
@@ -137,7 +132,7 @@ public class SlotMachineController : MonoBehaviour
             {
                 int reward = CalculateReward(winningSymbols, betAmount);
                 Debug.Log($"Win on inverse V-line of length {length} with reward: {reward}");
-                return; // Выходим из цикла, если нашли выигрышную линию
+                return; 
             }
         }
 
@@ -161,7 +156,7 @@ public class SlotMachineController : MonoBehaviour
         return totalHorizontalWinningLines;
     }
 
-    private bool IsWinningLine(Sprite symbol, int line)
+    public bool IsWinningLine(Sprite symbol, int line)
     {
         int count = 0;
         for (int reel = 0; reel < reels.Length; reel++)
@@ -180,7 +175,7 @@ public class SlotMachineController : MonoBehaviour
         return count >= 3;
     }
 
-    private bool IsVWinningLine(Sprite symbol, int length)
+    public bool IsVWinningLine(Sprite symbol, int length)
     {
         if (length < 3 || length > 5) return false;
 
@@ -213,7 +208,7 @@ public class SlotMachineController : MonoBehaviour
         return true;
     }
 
-    private bool IsInverseVWinningLine(Sprite symbol, int length)
+    public bool IsInverseVWinningLine(Sprite symbol, int length)
     {
 
         if (length == 5)
@@ -331,7 +326,7 @@ public class SlotMachineController : MonoBehaviour
         Dictionary<Sprite, int> symbolCounts = new Dictionary<Sprite, int>();
         int totalReward = 0;
 
-        // Подсчет символов в выигрышной линии
+        
         foreach (var symbol in winningSymbols)
         {
             if (symbolCounts.ContainsKey(symbol))
@@ -344,7 +339,7 @@ public class SlotMachineController : MonoBehaviour
             }
         }
 
-        // Расчет награды
+       
         foreach (var symbolCount in symbolCounts)
         {
             foreach (var symbolMultiplier in symbolMultipliers)

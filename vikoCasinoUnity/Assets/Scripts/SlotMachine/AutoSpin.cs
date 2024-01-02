@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.DataAccess.Interfaces;
+using Assets.DataAccess.Interfaces.SlotMacine;
 
-public class AutoSpin : MonoBehaviour
+public class AutoSpin : MonoBehaviour, IAutoSpin
 {
     private bool isAutoSpinRunning = false;
     private Coroutine autoSpinCoroutine = null;
