@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Assets.DataAccess.Classes.Roullete
 {
-    public class GameSession<Tbet> where Tbet : Bet
+    public class GS<Tbet> where Tbet : Bet
     {
         public List<RouletteUserBets> Bets { get; set; } = new List<RouletteUserBets>();
         public RouletteBet WonBet { get; set; }

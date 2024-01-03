@@ -48,9 +48,7 @@ public class RoulleteWheel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var totalBetAmount = Settings.GameSession.Bets?.Sum(x => x?.Amount) ?? 0;
-
-        if (Input.GetKeyDown(KeyCode.Space) && properties.getCanWeTurn() && totalBetAmount <= Settings.Balance.getAmount())
+        if (Input.GetKeyDown(KeyCode.Space) && properties.getCanWeTurn())
         {
             StartCoroutine(TurnTheWheel());
         }
@@ -126,10 +124,11 @@ public class RoulleteWheel : MonoBehaviour
         {
             notificationManager.ShowNotification("Win", Settings.GameSession.balanceChange + " ˆ",winIcon);
         }
-        else if (Settings.GameSession.balanceChange < 0)
+        else if (Settings.GameSession.balanceChange - betManager.getAllBetsMoney() < 0)
         {
-            notificationManager.ShowNotification("Lose", Settings.GameSession.balanceChange + " ˆ", loseIcon);
+            notificationManager.ShowNotification("Lose", Settings.GameSession.balanceChange - betManager.getAllBetsMoney() + " ˆ", loseIcon);
         }
+
 
         Settings.GameSession = new Assets.DataAccess.Classes.Roullete.GameSession();
         clearButton.ClearAllButtonTexts();

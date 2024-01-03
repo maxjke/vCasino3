@@ -28,6 +28,16 @@ public class NotificationManager : INotificationManager
 
         coroutineStarter.StartCoroutine(CloseAfterDelay(5.0f));
     }
+    
+    public void ShowNotification(string title, string desc)
+    {
+        myNotification.title = title;
+        myNotification.description = desc;
+        myNotification.UpdateUI();
+        myNotification.Open();
+
+        coroutineStarter.StartCoroutine(CloseAfterDelay(5.0f));
+    }
 
     private IEnumerator CloseAfterDelay(float delay)
     {

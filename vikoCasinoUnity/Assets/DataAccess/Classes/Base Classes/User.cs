@@ -26,6 +26,7 @@ namespace DataAccess.Classes
         private int Balance_Id { get; }
         private int PercentOfWin { get; set; }
 
+
         public void setPercentOfWin(int percentOfWin)
         {
             this.PercentOfWin = percentOfWin;

@@ -13,7 +13,7 @@ public class PreSettings : MonoBehaviour
     private Balance balance = new Balance(1,300);
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Settings.setStaticSettings(User,balance);
     }

@@ -40,8 +40,7 @@ namespace Assets.DataAccess.Repositories
             }
             else
             {
-                // Возвращаем некое значение, которое указывает на ошибку
-                return -1; // или другой номер, который невозможен в игре
+                return -1;
             }
         }
     }

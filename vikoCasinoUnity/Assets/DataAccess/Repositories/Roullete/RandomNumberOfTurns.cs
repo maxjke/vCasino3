@@ -11,7 +11,7 @@ namespace Assets.DataAccess.Repositories
     {
         public int GetNumberOfTurns()
         {
-            return new Random().Next(10, 10);
+            return new Random().Next(90, 150);
         }
     }
 }

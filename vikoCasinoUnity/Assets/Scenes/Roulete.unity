@@ -1572,7 +1572,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 146229633}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!1 &152451829
 GameObject:
   m_ObjectHideFlags: 0
@@ -1857,7 +1857,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 159891790}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &159891787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2310,7 +2310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 214773798}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &214773795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3073,7 +3073,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 346748610}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &346748607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3293,7 +3293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 359541991}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &359541988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3708,7 +3708,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 400767282}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &400767279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3928,7 +3928,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 469075422}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &469075419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4391,7 +4391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 480476479}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &480476476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4611,7 +4611,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 500449979}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &500449976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5210,7 +5210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 580164246}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &580164243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5579,7 +5579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 651053595}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &651053592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5933,7 +5933,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 731176529}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &731176526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6302,7 +6302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 770592778}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &770592775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6522,7 +6522,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 787562488}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &787562485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6742,7 +6742,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 799192720}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &799192717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7937,7 +7937,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 885543019}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &885543016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8157,7 +8157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 900218212}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &900218209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8526,7 +8526,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 903528396}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &903528393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8746,7 +8746,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 904701321}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &904701318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9062,7 +9062,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 920652229}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &920652226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9374,7 +9374,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 976162854}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &976162851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10686,7 +10686,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1111478530}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &1111478527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11204,7 +11204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1143701499}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &1143701496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11934,10 +11934,10 @@ RectTransform:
   - {fileID: 1621247466}
   m_Father: {fileID: 470303587}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 32.5, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 32.5, y: -31.77105}
+  m_SizeDelta: {x: 0, y: 63.5421}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1192215217
 MonoBehaviour:
@@ -12290,7 +12290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b4bbdcf873a4164eabf85f0d7820717, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 6e54eaa482ea20d4fbe2b232ac925827, type: 3}
+  icon: {fileID: 21300000, guid: e55e4ef66043a8747866894761ac06be, type: 3}
   title: Laimejote
   description: +100$
   notificationAnimator: {fileID: 1212380057}
@@ -12365,7 +12365,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1213165619}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &1213165616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12734,7 +12734,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1240137581}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &1240137578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12954,7 +12954,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1242130837}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &1242130834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13359,7 +13359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1304197629}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &1304197626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13579,7 +13579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1319530569}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &1319530566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13799,7 +13799,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1329395541}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &1329395538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14019,7 +14019,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1333237420}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &1333237417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14239,7 +14239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1338593386}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &1338593383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15935,7 +15935,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1524941549}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &1524941546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16155,7 +16155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1544706664}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &1544706661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16375,7 +16375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1545703171}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &1545703168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16595,7 +16595,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1563128744}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &1563128741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16851,7 +16851,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1592301497}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &1592301494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17220,7 +17220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1601813870}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &1601813867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17440,7 +17440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1604235679}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &1604235676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18629,7 +18629,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1750707100}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &1750707097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18849,7 +18849,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1767174680}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &1767174677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19069,7 +19069,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1770618787}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &1770618784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19522,7 +19522,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1802580377}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &1802580374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19742,7 +19742,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1814666663}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &1814666660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20111,7 +20111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1840522324}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &1840522321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20820,7 +20820,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1883274644}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &1883274641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21040,7 +21040,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1885028501}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &1885028498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21260,7 +21260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1921530403}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &1921530400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21503,7 +21503,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6e54eaa482ea20d4fbe2b232ac925827, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e55e4ef66043a8747866894761ac06be, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -21970,7 +21970,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 2024764965}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &2024764962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22190,7 +22190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 2053681352}
   input: {fileID: 1843596704}
-  myNotification: {fileID: 0}
+  myNotification: {fileID: 1212380061}
 --- !u!114 &2053681349
 MonoBehaviour:
   m_ObjectHideFlags: 0

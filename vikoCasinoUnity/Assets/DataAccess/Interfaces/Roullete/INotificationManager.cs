@@ -10,5 +10,6 @@ namespace Assets.DataAccess.Interfaces.Roullete
     public interface INotificationManager
     {
         public void ShowNotification(string title, string desc, Sprite sprite);
+        public void ShowNotification(string title, string desc);
     }
 }

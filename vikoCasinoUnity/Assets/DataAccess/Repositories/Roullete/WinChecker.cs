@@ -14,15 +14,18 @@ namespace Assets.DataAccess.Repositories.Roullete
     public class WinChecker : IWinChecker
     {
         ICombinations combinations;
+        IGameSessionManager gameSessionManager;
 
         public WinChecker(ICombinations x)
         {
             combinations = x;
+            gameSessionManager = new GameSessionManager();
         }
 
         public bool CheckWin()
         {
             bool hasWon = false;
+
 
             foreach (var bet in Settings.GameSession.Bets)
             {
@@ -36,7 +39,6 @@ namespace Assets.DataAccess.Repositories.Roullete
                 }
                 else
                 {
-                    Settings.GameSession.balanceChange -= bet.Amount;
                     Debug.Log($"Bet lost: Type - {bet.ToString()}, Amount Lost - {bet.Amount}");
                 }
             }
