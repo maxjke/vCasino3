@@ -12,7 +12,6 @@ namespace Assets.DataAccess.Interfaces.SlotMacine
         void CheckWin(int lineIndex, int betAmount);
         void CheckVLineWin(int betAmount);
         void CheckInverseVLineWin(int betAmount);
-        int WinningLines(Sprite firstSymbol);
         bool IsWinningLine(Sprite symbol, int line);
         bool IsVWinningLine(Sprite symbol, int length);
         bool IsInverseVWinningLine(Sprite symbol, int length);
