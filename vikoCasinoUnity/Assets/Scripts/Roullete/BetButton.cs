@@ -15,31 +15,32 @@ using UnityEngine.UI;
 
 public class BetButton : MonoBehaviour
 {
-    public ButtonManager button;
-    public TextMeshProUGUI input;
+    [SerializeField]public ButtonManager button;
+    [SerializeField] public TextMeshProUGUI input;
+    [SerializeField] private Michsky.MUIP.NotificationManager myNotification;
+
     private IGameSessionManager betManager;
     private RouletteUserBets userBet;
-    private Sprite icon;
     private INotificationManager notificationManager;
-    [SerializeField] private Michsky.MUIP.NotificationManager myNotification;
+    private IRemoverInvisibleCharacters remover;
+
 
     private void Awake()
     {
+        remover = new RemoverInvisibleCharacters();
         betManager = new GameSessionManager();
         notificationManager = new NotificationManager(myNotification, this);
     }
 
     public void OnButtonClick()
     {
-
         string parsedText = input.GetParsedText();
         string parsedbuttonText = button.buttonText;
 
+        parsedText = remover.RemoveInvisibleCharacters(parsedText).Replace(" ˆ", "");
+        parsedbuttonText = remover.RemoveInvisibleCharacters(parsedbuttonText).Replace(" ˆ", "");
 
-        parsedText = RemoveInvisibleCharacters(parsedText).Replace(" ˆ", "");
-        parsedbuttonText = RemoveInvisibleCharacters(parsedbuttonText).Replace(" ˆ", "");
-
-        if (!Settings.GameSession.CanWeBet) 
+        if (!Settings.GameSession.CanWeBet)
         {
             return;
         }
@@ -49,16 +50,15 @@ public class BetButton : MonoBehaviour
             return;
         }
 
-
         if (string.IsNullOrWhiteSpace(parsedText))
         {
             Debug.LogWarning("[OnButtonClick] Parsed text is null or whitespace.");
             return;
         }
 
-        string buttonName = RemoveInvisibleCharacters(button.ToSafeString());
+        string buttonName = remover.RemoveInvisibleCharacters(button.ToSafeString());
 
-        userBet = new RouletteUserBets(buttonName,int.Parse(parsedText));
+        userBet = new RouletteUserBets(buttonName, int.Parse(parsedText));
 
         Settings.Balance.setAmount(Settings.Balance.getAmount() - int.Parse(parsedText));
         if (string.IsNullOrWhiteSpace(parsedbuttonText))
@@ -74,12 +74,8 @@ public class BetButton : MonoBehaviour
         betManager.AddUserBet(userBet);
 
         button.buttonText = (int.Parse(parsedText) + int.Parse(parsedbuttonText)) + " ˆ";
-        
+
         button.UpdateUI();
     }
 
-    private string RemoveInvisibleCharacters(string str)
-    {
-        return new string(str.Where(c => !char.IsControl(c) && c != 0x200B && c != 0xFEFF).ToArray());
-    }
 }

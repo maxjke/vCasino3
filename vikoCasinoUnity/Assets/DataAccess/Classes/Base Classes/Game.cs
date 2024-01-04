@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Classes
 {
-    public class Game
+    public abstract class Game
     {
         public Game(string whatWeWin, float numberOfTurns, bool canWeTurn, float speed)
         {
@@ -35,7 +35,7 @@ namespace DataAccess.Classes
         {
             return this.WhatWeWin;
         }
-        public void setWhatWeWin(string whatWewin)
+        public  void setWhatWeWin(string whatWewin)
         {
             this.WhatWeWin = whatWewin;
         }
