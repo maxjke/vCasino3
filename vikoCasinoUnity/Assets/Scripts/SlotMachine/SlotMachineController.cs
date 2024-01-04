@@ -6,20 +6,20 @@ using UnityEngine.WSA;
 using Assets.DataAccess.Interfaces;
 using Assets.DataAccess.Interfaces.SlotMacine;
 using Assets.DataAccess.Classes.SlotMacine;
+using Assets.DataAccess.Classes.Base_Classes;
+using UnityEngine.Windows;
+using TMPro;
+using System.Linq;
 
 public class SlotMachineController : MonoBehaviour, ISlotMachineController, IReelController, IGetSymbols, ICalculateReward, ILineCheck
 {
     public GameObject[] reels; 
     public Sprite[] symbols; 
-    
     public SymbolMultiplier[] symbolMultipliers;
-    private Vector3[] initialPositions; 
- 
+    private Vector3[] initialPositions;
     private int stoppedReels;
-
-   
-
-
+    public TextMeshProUGUI bet;
+    public bool canWeBet = true;
     public void Start()
     {
         foreach (GameObject reel in reels)
@@ -34,6 +34,22 @@ public class SlotMachineController : MonoBehaviour, ISlotMachineController, IRee
         }
     }
 
+    public int Bet()
+    {   
+        var x = bet.GetParsedText();
+        x = RemoveInvisibleCharacters(x);
+
+        if (int.Parse(x) > Settings.Balance.getAmount() && int.Parse(x) < 0)
+        {
+            return -1;
+        }
+        else 
+        {
+            return int.Parse(x);
+        }
+      
+    }
+   
     public void StartSpin()
     {
         foreach(GameObject reel in reels)
@@ -45,20 +61,22 @@ public class SlotMachineController : MonoBehaviour, ISlotMachineController, IRee
     public void ReelStopped()
     {
         stoppedReels++;
-        if(stoppedReels == reels.Length)
-        {
-            CheckWin(0, 1);
-            CheckWin(1, 1);
-            CheckWin(2, 1);
-            CheckVLineWin(1);
-            CheckInverseVLineWin(1);
+        if(stoppedReels == reels.Length && Bet() != -1)
+        {  
+            CheckWin(0, Bet());
+            CheckWin(1, Bet());
+            CheckWin(2, Bet());
+            CheckVLineWin(Bet());
+            CheckInverseVLineWin(Bet());
             Spin.isAnyReelSpinning = false;
+            canWeBet = true;
             stoppedReels = 0;
            
         }
         else
         {
             Spin.isAnyReelSpinning = true;
+            canWeBet = false;
         }
     }
 
@@ -99,6 +117,7 @@ public class SlotMachineController : MonoBehaviour, ISlotMachineController, IRee
         {
             int reward = CalculateReward(winningSymbols, betAmount);
             Debug.Log($"Win on horizontal line with reward: {reward}");
+            Settings.Balance.setAmount(Settings.Balance.getAmount()+reward);
         }
         else
         {
@@ -115,6 +134,7 @@ public class SlotMachineController : MonoBehaviour, ISlotMachineController, IRee
             {
                 int reward = CalculateReward(winningSymbols, betAmount);
                 Debug.Log($"Win on V-line of length {length} with reward: {reward}");
+                Settings.Balance.setAmount(Settings.Balance.getAmount() + reward);
                 return; 
             }
         }
@@ -132,28 +152,12 @@ public class SlotMachineController : MonoBehaviour, ISlotMachineController, IRee
             {
                 int reward = CalculateReward(winningSymbols, betAmount);
                 Debug.Log($"Win on inverse V-line of length {length} with reward: {reward}");
+                Settings.Balance.setAmount(Settings.Balance.getAmount() + reward);
                 return; 
             }
         }
 
         Debug.Log("No win on inverse V-line");
-    }
-
-
-
-    public int WinningLines(Sprite firstSymbol)
-    {
-        int totalHorizontalWinningLines = 0;
-
-        for (int line = 0; line < 3; line++)
-        {
-            if (IsWinningLine(firstSymbol, line))
-            {
-                totalHorizontalWinningLines++;
-            }
-        }
-
-        return totalHorizontalWinningLines;
     }
 
     public bool IsWinningLine(Sprite symbol, int line)
@@ -237,8 +241,14 @@ public class SlotMachineController : MonoBehaviour, ISlotMachineController, IRee
     }
 
         public Sprite GetSymbolAtPosition(GameObject reel, int position)
-    {
-        
+        { 
+        int maxPosition = 2; 
+
+        if (position < 0 || position > maxPosition)
+        {
+            Debug.LogError("Position for GetSymbolAtPosition is out of range.");
+            return null;
+        }
         string[] winningSymbolNames = { "last 1", "last 2", "last 3" };
 
         if (position < 0 || position >= winningSymbolNames.Length)
@@ -368,5 +378,8 @@ public class SlotMachineController : MonoBehaviour, ISlotMachineController, IRee
 
         return totalReward;
     }
-
+    private string RemoveInvisibleCharacters(string str)
+    {
+        return new string(str.Where(c => !char.IsControl(c) && c != 0x200B && c != 0xFEFF).ToArray());
+    }
 }

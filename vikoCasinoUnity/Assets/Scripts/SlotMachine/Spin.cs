@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.DataAccess.Interfaces;
+using UnityEngine.UI;
+using TMPro;
 
 public class Spin : MonoBehaviour, ISpin
 {
@@ -13,6 +15,7 @@ public class Spin : MonoBehaviour, ISpin
     private bool firstSpin = true;
     public static bool isAnyReelSpinning = false;
     public SlotMachineController controller;
+    
 
 
     void Start()
