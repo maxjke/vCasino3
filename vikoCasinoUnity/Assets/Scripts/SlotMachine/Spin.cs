@@ -14,13 +14,13 @@ public class Spin : MonoBehaviour, ISpin
     private bool isSpinning; 
     private bool firstSpin = true;
     public static bool isAnyReelSpinning = false;
-    public SlotMachineController controller;
+    public ReelController controller;
     
 
 
     void Start()
     {
-        controller = FindAnyObjectByType<SlotMachineController>();
+        controller = FindAnyObjectByType<ReelController>();
     }
 
     public void StartSpinning()

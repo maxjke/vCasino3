@@ -1,4 +1,5 @@
 using Assets.DataAccess.Classes.Base_Classes;
+using Assets.DataAccess.Interfaces.SlotMacine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,13 +8,15 @@ using UnityEngine;
 
 public class SlotMachine : MonoBehaviour, ISlotMachine
 {
-    private SlotMachineController machineController;
+    
     public TextMeshProUGUI input;
-    public SlotMachineController controller;
+    public Bet bet;
+    public ReelController reelController;
   
     private void Start()
     {
-        machineController = GetComponent<SlotMachineController>();
+        reelController = FindAnyObjectByType<ReelController>();
+        bet = FindAnyObjectByType<Bet>();
     }
 
     
@@ -21,10 +24,10 @@ public class SlotMachine : MonoBehaviour, ISlotMachine
     {
         var x = input.GetParsedText();
         x = RemoveInvisibleCharacters(x);
-        if (controller.canWeBet == true && controller.Bet() != -1) {
+        if (Bet.canWeBet == true && bet.BetCheck() != -1) {
             Settings.Balance.setAmount(Settings.Balance.getAmount() - decimal.Parse(x));
-            machineController.StartSpin();
-            controller.canWeBet = false;
+            reelController.StartSpin();
+            Bet.canWeBet = false;
             }
     }
     private string RemoveInvisibleCharacters(string str)

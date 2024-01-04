@@ -10,5 +10,6 @@ namespace Assets.DataAccess.Interfaces.SlotMacine
      interface IGetSymbols
     {
         Sprite GetSymbolAtPosition(GameObject reel, int position);
+        List<Sprite> GetWinningSymbols(Lines.LineType lineType, int lineIndex, int length = 0);
     }
 }
