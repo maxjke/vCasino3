@@ -589,6 +589,7 @@ GameObject:
   - component: {fileID: 180088224}
   - component: {fileID: 180088223}
   - component: {fileID: 180088222}
+  - component: {fileID: 180088225}
   m_Layer: 5
   m_Name: Roulette
   m_TagString: Untagged
@@ -659,7 +660,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 180088223}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 180088225}
+        m_TargetAssemblyTypeName: SceneTransition, Assembly-CSharp
+        m_MethodName: Transition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &180088223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -698,6 +711,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 180088220}
   m_CullTransparentMesh: 1
+--- !u!114 &180088225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180088220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f97621407d967f34795c7aff197699a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 2
 --- !u!1 &183570279
 GameObject:
   m_ObjectHideFlags: 0
@@ -1001,6 +1027,7 @@ GameObject:
   - component: {fileID: 277657940}
   - component: {fileID: 277657939}
   - component: {fileID: 277657938}
+  - component: {fileID: 277657941}
   m_Layer: 5
   m_Name: SlotMachine
   m_TagString: Untagged
@@ -1071,7 +1098,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 277657939}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 277657941}
+        m_TargetAssemblyTypeName: SceneTransition, Assembly-CSharp
+        m_MethodName: Transition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &277657939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1110,6 +1149,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 277657936}
   m_CullTransparentMesh: 1
+--- !u!114 &277657941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 277657936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f97621407d967f34795c7aff197699a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 1
 --- !u!1 &458842771
 GameObject:
   m_ObjectHideFlags: 0
@@ -1582,7 +1634,7 @@ RectTransform:
   m_GameObject: {fileID: 751390417}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.01, y: 4.01, z: 4.01}
+  m_LocalScale: {x: 2.8, y: 2.8, z: 2.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 504013101}
@@ -1612,7 +1664,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 64c53967a5d545b4da83692f9a4da9b9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 23b9e9ad7cb984e409c724c855280d39, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -4130,6 +4182,7 @@ GameObject:
   - component: {fileID: 2005878558}
   - component: {fileID: 2005878557}
   - component: {fileID: 2005878556}
+  - component: {fileID: 2005878559}
   m_Layer: 5
   m_Name: DiceGame
   m_TagString: Untagged
@@ -4200,7 +4253,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2005878557}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2005878559}
+        m_TargetAssemblyTypeName: SceneTransition, Assembly-CSharp
+        m_MethodName: Transition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2005878557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4239,6 +4304,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2005878554}
   m_CullTransparentMesh: 1
+--- !u!114 &2005878559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005878554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f97621407d967f34795c7aff197699a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 3
 --- !u!1 &2055596931
 GameObject:
   m_ObjectHideFlags: 0
