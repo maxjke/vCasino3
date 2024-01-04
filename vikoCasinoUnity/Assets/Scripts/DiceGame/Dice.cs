@@ -1,9 +1,10 @@
+using Assets.DataAccess.Interfaces.DiceGame;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dice : MonoBehaviour
+public class Dice : MonoBehaviour, IDice
 {
 
     private Sprite[] diceSides;
@@ -39,7 +40,6 @@ public class Dice : MonoBehaviour
         }
 
         finalSide = randomDiceSide + 1;
-        Debug.Log(finalSide);
         OnDiceRolled?.Invoke(finalSide);
     }
 }

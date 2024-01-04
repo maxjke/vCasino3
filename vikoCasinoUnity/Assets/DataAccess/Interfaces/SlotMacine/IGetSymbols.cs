@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Assets.DataAccess.Interfaces.SlotMacine
 {
-     interface IGetSymbols
+    public interface IGetSymbols
     {
         Sprite GetSymbolAtPosition(GameObject reel, int position);
         List<Sprite> GetWinningSymbols(Lines.LineType lineType, int lineIndex, int length = 0);

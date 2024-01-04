@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Assets.DataAccess.Interfaces.SlotMacine
 {
-     interface IAutoSpin
+   public interface IAutoSpin
     {
         void OnAutoSpinButtonClicked();
         

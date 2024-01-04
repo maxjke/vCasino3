@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Assets.DataAccess.Interfaces.SlotMacine
 {
-    interface ILineCheck
+    public interface ILineCheck
     {
         void CheckWin(int lineIndex, int betAmount);
         void CheckVLineWin(int betAmount);

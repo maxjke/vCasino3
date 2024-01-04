@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Assets.DataAccess.Interfaces.SlotMacine
 {
-     interface IReelController
+    public interface IReelController
     {
         void ReelStopped();
         void RandomizeReel(GameObject reel);

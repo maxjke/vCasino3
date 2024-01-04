@@ -1,8 +1,9 @@
+using Assets.DataAccess.Interfaces.DiceGame;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ManagerDice : MonoBehaviour
+public class ManagerDice : MonoBehaviour, IManagerDice
 {
     public Dice dice1;
     public Dice dice2;
@@ -18,7 +19,7 @@ public class ManagerDice : MonoBehaviour
         dice2.OnDiceRolled += (value) => HandleDiceRolled(value, 2);
     }
 
-    private void HandleDiceRolled(int diceValue, int diceNumber)
+    public void HandleDiceRolled(int diceValue, int diceNumber)
     {
         if (diceNumber == 1)
         {

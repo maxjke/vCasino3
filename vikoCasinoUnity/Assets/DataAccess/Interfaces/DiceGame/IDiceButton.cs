@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assets.DataAccess.Interfaces.SlotMacine
+namespace Assets.DataAccess.Interfaces.DiceGame
 {
-    public interface IBet
+    public interface IDiceButton
     {
-        int BetCheck();
+        void OnButtonClick();
     }
 }
